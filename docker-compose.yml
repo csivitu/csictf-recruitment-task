@@ -1,0 +1,21 @@
+version: "3"
+services:
+        web:
+                depends_on:
+                        - "mongo"
+                build: "."
+                ports:
+                        - "3000:1337"
+                environment:
+                        - "NODE_ENV=production"
+                        - "MONGO_URL=mongodb://mongo:27017"
+        mongo:
+                image: "mongo"
+
+        nsjail:
+                build:
+                        dockerfile: "Dockerfile.nsjail"
+                        context: "."
+                ports:
+                        - "31337:31337"
+                privileged: "true"

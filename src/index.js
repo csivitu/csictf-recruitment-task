@@ -20,7 +20,7 @@ MongoClient.connect(url, function(err, client) {
 });
 
 const app = express();
-const PORT = 1337;
+const PORT = 3000;
 
 const checkYesNo = (data) => {
 	return data.every((d) => ['y', 'n'].includes(d));
