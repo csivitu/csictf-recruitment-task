@@ -47,9 +47,14 @@ app.post('/', limiter, (req, res, next) => {
 		return res.send('That doesn\'t seem right...');
 	}
 	
+	try {
 	// https://jwt.io
 	const data = jwt.verify(token, 'P3RMmFVMGb');
-	
+	} catch (e) {
+		console.log(e);
+		return res.send('That doesn\'t seem right...');
+	}
+
 	// user's discord username
 	const usernameRegex = /^\w+#\d{4}$/;
 	const discordUsername = data.discordUsername.toString();
