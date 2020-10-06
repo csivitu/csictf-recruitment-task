@@ -1,0 +1,8 @@
+# Build nsjailcontainer as given in the README on https://github.com/google/nsjail
+FROM nsjailcontainer
+
+WORKDIR /app
+
+COPY ./src/index.js .
+
+ENTRYPOINT nsjail -Ml --user 99999 --group 99999 --disable_proc --chroot / --cwd /app --time_limit 300 --port 31337 --max_cpu 0.2 -- /bin/sh -i
