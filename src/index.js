@@ -32,7 +32,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
 	limiter = rateLimit({
 		windowMs: 1000 * 60 * 60,
-		max: 1,
+		max: 10,
 	});
 }
 
