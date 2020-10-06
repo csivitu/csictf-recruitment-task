@@ -5,7 +5,7 @@ services:
                         - "mongo"
                 build: "."
                 ports:
-                        - "3000:1337"
+                        - "3000:3000"
                 environment:
                         - "NODE_ENV=production"
                         - "MONGO_URL=mongodb://mongo:27017"
