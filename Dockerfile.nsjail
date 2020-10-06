@@ -4,5 +4,8 @@ FROM nsjailcontainer
 WORKDIR /app
 
 COPY ./src/index.js .
+COPY ./start-nsjail.sh /
 
-ENTRYPOINT nsjail -Ml --user 99999 --group 99999 --disable_proc --chroot / --cwd /app --time_limit 300 --port 31337 --max_cpu 0.2 -- /bin/sh -i
+RUN chmod +x /start-nsjail.sh
+
+ENTRYPOINT ["/start-nsjail.sh"]
