@@ -48,11 +48,22 @@ app.post('/', limiter, (req, res, next) => {
 		return res.send('That doesn\'t seem right...');
 	}
 	
+	let data = {};
 	try {
-	// https://jwt.io
-	const data = jwt.verify(token, 'P3RMmFVMGb');
+		// https://jwt.io
+		data = jwt.verify(token, 'P3RMmFVMGb');
 	} catch (e) {
 		console.log(e);
+		return res.send('That doesn\'t seem right...');
+	}
+
+	if (
+		!data.discordUsername
+		|| !data.email
+		|| !data.isStudent
+		|| !data.favCategories
+		|| !data.experience
+	) {
 		return res.send('That doesn\'t seem right...');
 	}
 
@@ -105,13 +116,16 @@ app.post('/', limiter, (req, res, next) => {
 				return res.send('There was an error.');
 			}
 
-			return res.send(`Congrats ${discordUsername}! You have successfully applied for csictf. We'll be contacting you shortly for further shortlisting.`);
+			return res.send(`Congrats ${discordUsername}! You have successfully applied for csictf. We'll be contacting you shortly for further shortlisting.
+				Don't forget to join our discord for updates: htttps://discord.gg/3sqT5e2`);
 		});
 	});
 });
 
 app.get('/', (req, res, next) => {
-	res.send('We were too lazy to make the frontend, figure out how to apply...');
+	res.send(`We were too lazy to make the frontend, figure out how to apply...
+		<!-- By the way, join our discord: https://discord.gg/3sqT5e2 for updates -->
+		`);
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}.`));
