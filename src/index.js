@@ -89,9 +89,10 @@ app.post('/', limiter, (req, res, next) => {
 		
 		collection.insertOne({ 
 			discordUsername,
+			email,
 			isStudent,
 			favCategories,
-			experience
+			experience,
 		}, (err, data) => {
 			if (err) {
 				console.log(err);
