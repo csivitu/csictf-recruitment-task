@@ -30,9 +30,10 @@ let limiter;
 if (process.env.NODE_ENV !== 'production') {
 	limiter = (req, res, next) => {next();}
 } else {
+	// Max attempts per hour
 	limiter = rateLimit({
 		windowMs: 1000 * 60 * 60,
-		max: 10,
+		max: 20,
 	});
 }
 
