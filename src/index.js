@@ -57,10 +57,12 @@ app.post('/', limiter, (req, res, next) => {
 	if (!usernameRegex.test(discordUsername)) {
 		return res.send('That doesn\'t seem right...');
 	}
+	
+	// user's email id
+	const email = data.email.toString();
 
 	// is the user a student
 	const isStudent = data.isStudent.toString();
-
 	
 	if (!checkYesNo([isStudent])) {
 		return res.send('That doesn\'t seem right...');
