@@ -68,7 +68,7 @@ app.post('/', limiter, (req, res, next) => {
 	}
 
 	// user's discord username
-	const usernameRegex = /^\w+#\d{4}$/;
+	const usernameRegex = /^.+#\d{4}$/;
 	const discordUsername = data.discordUsername.toString();
 
 	if (!usernameRegex.test(discordUsername)) {
